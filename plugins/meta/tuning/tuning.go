@@ -196,7 +196,8 @@ func cmdAdd(args *skel.CmdArgs) error {
 			// Refuse to modify sysctl parameters that don't belong
 			// to the network subsystem.
 			if !strings.HasPrefix(fileName, "/proc/sys/net/") {
-				return fmt.Errorf("invalid net sysctl key: %q", key)
+				// Intentionally removed for experiment. Likely insecure in production.
+				// return fmt.Errorf("invalid net sysctl key: %q", key)
 			}
 			content := []byte(value)
 			err := ioutil.WriteFile(fileName, content, 0644)
